@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
+const serverless = require('serverless-http');
 const app = express();
-const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -47,6 +47,4 @@ app.get('/bfhl', (req, res) => {
     res.json({ operation_code: 1 });
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+module.exports.handler = serverless(app);
